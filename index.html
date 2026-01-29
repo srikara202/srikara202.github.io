@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Srikara Shankara , ML / LLM / MLOps Portfolio</title>
+  <meta name="description" content="Srikara Shankara , ML / LLM / MLOps engineer with a PhD in Applied Physics (Quantum Communications). End-to-end ML systems, fine-tuning, model deployment, and quant-style rigor." />
+
+  <style>
+    :root{
+      --bg: #0b0c10;
+      --bg2:#0f1117;
+      --card:#11131a;
+      --text:#e8eaed;
+      --muted:#a7abb5;
+      --line:#222634;
+      --brand:#7dd3fc;
+      --brand2:#a78bfa;
+      --ok:#86efac;
+      --warn:#fbbf24;
+
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+
+      --max: 1100px;
+      --pad: 22px;
+      --pad2: 30px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    /* Light mode overrides */
+    [data-theme="light"]{
+      --bg:#fafafa;
+      --bg2:#ffffff;
+      --card:#ffffff;
+      --text:#10131a;
+      --muted:#4b5563;
+      --line:#e5e7eb;
+      --brand:#0284c7;
+      --brand2:#7c3aed;
+      --shadow: 0 12px 30px rgba(2,6,23,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(125,211,252,.18), transparent 60%),
+      radial-gradient(1000px 600px at 100% 0%, rgba(167,139,250,.16), transparent 55%),
+      linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:16px; top:16px; width:auto; height:auto; padding:10px 12px;
+      background:var(--card); border:1px solid var(--line); border-radius:12px; z-index:1000;
+    }
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter:saturate(150%) blur(12px);
+      background: color-mix(in oklab, var(--bg2), transparent 30%);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      font-weight:700; letter-spacing:.2px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow:0 0 0 3px color-mix(in oklab, var(--brand), transparent 82%);
+    }
+
+    .nav-links{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:flex-end;
+    }
+    .nav-links a{
+      text-decoration:none;
+      font-size:14px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .nav-links a:hover{
+      color:var(--text);
+      border-color: var(--line);
+      background: color-mix(in oklab, var(--card), transparent 10%);
+    }
+
+    .actions{
+      display:flex; gap:10px; align-items:center;
+    }
+    .icon-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:14px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 8%);
+      cursor:pointer;
+    }
+    .icon-btn:hover{transform:translateY(-1px)}
+    .icon{width:18px; height:18px; opacity:.95}
+
+    /* Hero */
+    header.hero{
+      padding:44px 0 10px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap:22px;
+      align-items:start;
+    }
+    .avatar{
+      width:140px; height:140px; border-radius:40px;
+      background:linear-gradient(135deg, color-mix(in oklab, var(--brand), transparent 35%), color-mix(in oklab, var(--brand2), transparent 35%));
+      border:1px solid color-mix(in oklab, var(--line), transparent 0%);
+      box-shadow: var(--shadow);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .avatar::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background:radial-gradient(120px 120px at 20% 20%, rgba(255,255,255,.25), transparent 60%);
+      pointer-events:none;
+    }
+    .avatar .initials{
+      font-family:var(--mono);
+      font-size:44px;
+      font-weight:800;
+      letter-spacing:1px;
+      color:color-mix(in oklab, var(--text), white 10%);
+      text-shadow:0 8px 18px rgba(0,0,0,.25);
+    }
+    /* If you later add a real photo, just replace the initials with an <img> */
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+
+    .kicker{
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+      margin-top:4px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 8%);
+      color:var(--muted);
+      font-size:13px;
+      text-decoration:none;
+    }
+    .pill strong{color:var(--text); font-weight:600}
+    h1{
+      margin:10px 0 8px;
+      font-size:42px;
+      line-height:1.12;
+      letter-spacing:-.6px;
+    }
+    .subtitle{
+      margin:0;
+      font-size:16px;
+      color:var(--muted);
+      max-width:72ch;
+    }
+    .cta-row{
+      margin-top:18px;
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:11px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 6%);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      border-color: color-mix(in oklab, var(--brand), var(--line) 45%);
+      background:linear-gradient(135deg,
+      color-mix(in oklab, var(--brand), transparent 70%),
+      color-mix(in oklab, var(--brand2), transparent 74%)
+      );
+    }
+
+    .social-row{
+      margin-top:16px;
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    .social{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:9px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 6%);
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .social:hover{color:var(--text)}
+    .social .icon{width:18px;height:18px}
+
+    /* Sections */
+    section{padding:34px 0}
+    .section-title{
+      display:flex; align-items:baseline; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    .hint{
+      color:var(--muted);
+      font-size:14px;
+      max-width:70ch;
+    }
+    .grid{
+      display:grid;
+      gap:14px;
+    }
+    .grid.cols-2{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .grid.cols-3{grid-template-columns:repeat(3, minmax(0,1fr))}
+
+    .card{
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 0%);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .card.small{padding:14px}
+    .card-header{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      margin-bottom:8px;
+    }
+    .card h3{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.2px;
+      line-height:1.25;
+    }
+    .badges{
+      display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end;
+    }
+    .badge{
+      font-size:12px;
+      padding:5px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:color-mix(in oklab, var(--bg2), transparent 50%);
+      white-space:nowrap;
+    }
+    .badge.ok{border-color: color-mix(in oklab, var(--ok), var(--line) 55%); color:color-mix(in oklab, var(--ok), var(--text) 20%)}
+    .badge.warn{border-color: color-mix(in oklab, var(--warn), var(--line) 55%); color:color-mix(in oklab, var(--warn), var(--text) 20%)}
+
+    .card p{margin:10px 0 0; color:var(--muted); font-size:14px}
+    .meta{
+      margin-top:10px;
+      display:flex; flex-wrap:wrap; gap:8px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .meta span{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px dashed color-mix(in oklab, var(--line), transparent 15%);
+      background:color-mix(in oklab, var(--bg2), transparent 55%);
+    }
+
+    .card-actions{
+      margin-top:12px;
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .link{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--bg2), transparent 55%);
+      text-decoration:none;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+    }
+    .link:hover{color:var(--text)}
+    .link.primary{
+      border-color: color-mix(in oklab, var(--brand), var(--line) 55%);
+      color:color-mix(in oklab, var(--brand), var(--text) 35%);
+    }
+
+    details{
+      margin-top:12px;
+      border-top:1px solid color-mix(in oklab, var(--line), transparent 20%);
+      padding-top:10px;
+    }
+    summary{
+      cursor:pointer;
+      color:var(--text);
+      font-weight:700;
+      font-size:13px;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .details-body{
+      margin-top:10px;
+      display:grid;
+      gap:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .kv{
+      border:1px solid color-mix(in oklab, var(--line), transparent 15%);
+      background:color-mix(in oklab, var(--bg2), transparent 55%);
+      border-radius:14px;
+      padding:12px;
+    }
+    .kv strong{color:var(--text)}
+    ul.clean{
+      margin:8px 0 0 18px;
+      padding:0;
+    }
+    ul.clean li{margin:6px 0}
+
+    /* Tech stack */
+    .stack{
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .chip{
+      font-size:13px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--bg2), transparent 55%);
+      color:var(--muted);
+    }
+
+    /* Footer + contact */
+    .contact-grid{
+      display:grid; grid-template-columns: 1.3fr .7fr; gap:14px;
+      align-items:start;
+    }
+    .contact-card a{word-break:break-word}
+
+    footer{
+      padding:22px 0 40px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .foot-row{
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:16px;
+    }
+
+    /* Scroll-to-top */
+    .to-top{
+      position:fixed;
+      right:16px; bottom:16px;
+      width:46px; height:46px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:color-mix(in oklab, var(--card), transparent 6%);
+      box-shadow:var(--shadow);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:200;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .hero-grid{grid-template-columns: 1fr; }
+      .avatar{width:110px;height:110px;border-radius:30px}
+      h1{font-size:34px}
+      .grid.cols-2{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .nav-inner{gap:10px}
+    }
+  </style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="Go to top">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Srikara Shankara</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#stack">Tech Stack</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="actions" aria-label="Quick actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle dark/light" aria-label="Toggle dark/light">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a1 1 0 0 1 1 1v1"></path>
+            <path d="M12 19a1 1 0 0 1 1 1v1"></path>
+            <path d="M4.22 5.22a1 1 0 0 1 1.42 0l.7.7"></path>
+            <path d="M17.66 18.66a1 1 0 0 1 1.42 0l.7.7"></path>
+            <path d="M3 12a1 1 0 0 1 1-1h1"></path>
+            <path d="M19 12a1 1 0 0 1 1-1h1"></path>
+            <path d="M5.22 19.78a1 1 0 0 1 0-1.42l.7-.7"></path>
+            <path d="M18.66 6.34a1 1 0 0 1 0-1.42l.7-.7"></path>
+            <circle cx="12" cy="12" r="4"></circle>
+          </svg>
+        </button>
+
+        <a class="icon-btn" href="https://github.com/srikara202" title="GitHub" aria-label="GitHub profile">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+
+        <a class="icon-btn" href="https://www.linkedin.com/in/srikarashankara/" title="LinkedIn" aria-label="LinkedIn profile">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="avatar" aria-label="Avatar">
+        <!-- Swap initials for a real headshot later:
+          <img src="headshot.jpg" alt="Headshot of Srikara Shankara" />
+        -->
+        <div class="initials" aria-hidden="true">SS</div>
+      </div>
+
+      <div>
+        <div class="kicker">
+          <span class="pill"><strong>ML / LLM / MLOps</strong></span>
+          <span class="pill">Sydney, NSW</span>
+          <span class="pill">PhD (Applied Physics, Quantum Communications)</span>
+          <span class="pill">Work rights: Subclass 485 (valid till May 2029)</span>
+        </div>
+
+        <h1>Building practical ML systems , from research-grade rigor to production-ready demos.</h1>
+
+        <p class="subtitle">
+          I’m Srikara. I recently completed a PhD in Applied Physics (Quantum Communications) and now focus on hands-on machine learning:
+          fine-tuning LLMs, implementing transformers from scratch, and building MLOps pipelines with monitoring + CI/CD.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">
+            <span>View featured projects</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+          </a>
+          <a class="btn" href="https://drive.google.com/file/d/12Lza-t3aMDIN9N8P-E7W_9ENbDP8avxP/view?usp=sharing">
+            <span>View CV (PDF)</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
+          </a>
+          <a class="btn" href="mailto:srikarashankara@outlook.com">
+            <span>Email me</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path></svg>
+          </a>
+        </div>
+
+        <!-- LinkedIn + GitHub visible above the fold (checklist requirement) -->
+        <div class="social-row" aria-label="Social links">
+          <a class="social" href="https://github.com/srikara202">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <span>GitHub</span>
+          </a>
+          <a class="social" href="https://www.linkedin.com/in/srikarashankara/">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="social" href="https://scholar.google.com.au/citations?user=QmFHyvIAAAAJ">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3 2 9l10 6 10-6-10-6Z"></path>
+              <path d="M2 9v6l10 6 10-6V9"></path>
+            </svg>
+            <span>Google Scholar</span>
+          </a>
+          <a class="social" href="mailto:srikarashankara@outlook.com">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path></svg>
+            <span>srikarashankara@outlook.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- FEATURED PROJECTS (Above the fold projects) -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Projects</h2>
+        <div class="hint">Signal-heavy, role-relevant work (LLMs + MLOps + production demos).</div>
+      </div>
+
+      <div class="grid cols-2">
+        <!-- Project 1: Llama SQL -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>Llama-2-7B → English-to-SQL (LoRA fine-tune + Colab Streamlit demo)</h3>
+              <div class="meta">
+                <span title="Core areas"><strong>LLM fine-tuning</strong> · PEFT · quantization</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge ok">Fine-tuned LLM</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+
+          <p>
+            I fine-tuned Llama-2-7B to generate SQL from a plain-English question plus a table schema (DDL).
+            The goal was a practical end-to-end workflow that runs on a single Colab GPU using parameter-efficient training.
+            The demo UI runs inside Colab via a tunnel so you can type an instruction + schema and get SQL back.
+          </p>
+
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/llama-2-SQL-Query-Generator">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Repo
+            </a>
+            <a class="link" href="https://github.com/srikara202/llama-2-SQL-Query-Generator/blob/main/llama_fine_tuning_SQL_query_Bot.ipynb">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"></path><path d="M20 2H6.5A2.5 2.5 0 0 0 4 4.5v15"></path><path d="M8 2v20"></path></svg>
+              Colab notebook
+            </a>
+          </div>
+
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv"><strong>Problem:</strong> Writing SQL is a common bottleneck. Users often have a question + schema but need help translating it into correct SQL.</div>
+              <div class="kv"><strong>Solution:</strong> Fine-tuned Llama-2-7B with instruction-style prompting using LoRA adapters + 4-bit loading (NF4) to fit training in Colab.</div>
+              <div class="kv"><strong>Result:</strong> A working demo that generates SQL with controllable decoding (temperature, top-p, top-k). Trained on a 5,000-example subset for a quick iteration loop.</div>
+              <div class="kv">
+                <strong>Aha insight:</strong> Exact string match is misleading for SQL (many answers can be correct). Execution-based evaluation is the right way to measure correctness.
+              </div>
+              <div class="kv">
+                <strong>V2 improvement:</strong>
+                <ul class="clean">
+                  <li>Add execution-based evaluation (run SQL on a test DB) + dialect controls (SQLite/Postgres/MySQL).</li>
+                  <li>Handle long schemas with schema pruning / retrieval (and better context-window management).</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Project 2: GPT from scratch -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>GPT-2 Foundational Model Built From Scratch (PyTorch) + distilgpt2 weight loading</h3>
+              <div class="meta">
+                <span title="Core areas"><strong>Transformers from scratch</strong> · tokenization · decoding</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge ok">Paper reimplementation</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+
+          <p>
+            I implemented GPT-2 end-to-end in PyTorch (token + positional embeddings, causal self-attention, transformer blocks, LM head),
+            built a toy training pipeline, and then loaded HuggingFace distilgpt2 weights into my own architecture.
+            I sanity-checked correctness via near-identical logits and matching argmax tokens.
+          </p>
+
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/GPT-built-from-scratch">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Repo
+            </a>
+          </div>
+
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv"><strong>Problem:</strong> I wanted a first-principles understanding of transformer internals (attention math, masking, shapes, and weight mapping).</div>
+              <div class="kv"><strong>Solution:</strong> Implemented the full GPT-2 stack in PyTorch and wrote utilities for tokenization, windowed training pairs, and autoregressive generation (temperature + top-k).</div>
+              <div class="kv"><strong>Result:</strong> Loaded distilgpt2 (82M) weights and validated outputs: max abs diff ≈ 3.8×10⁻⁵ with matching argmax tokens.</div>
+              <div class="kv"><strong>Aha insight:</strong> “Correctness” isn’t just that it runs , tiny implementation details (masking, layernorm placement, shape conventions) show up immediately in logits.</div>
+              <div class="kv">
+                <strong>V2 improvement:</strong>
+                <ul class="clean">
+                  <li>Add better sampling defaults + repetition penalties (toy-trained models can be incoherent).</li>
+                  <li>Expand training + evaluation (perplexity) on a standard dataset with stronger checkpoints.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Project 3: Cricket MLOps -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>Cricket T20 Score Predictor , Production MLOps (MLflow + DVC + Kubernetes + monitoring)</h3>
+              <div class="meta">
+                <span><strong>MLOps</strong> · CI/CD · observability</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge ok">Multi-component system</span>
+              <span class="badge">2025</span>
+            </div>
+          </div>
+
+          <p>
+            This project focuses on shipping an ML model like a real product: experiment tracking, versioned data,
+            containerized serving, Kubernetes rollout strategy, and monitoring dashboards.
+            It’s a practical “how do I keep this alive in production?” build.
+          </p>
+
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/Cricket-T20-Score-Predictor-MLOps">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Repo
+            </a>
+          </div>
+
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv"><strong>Problem:</strong> Most ML projects stop at a notebook. I wanted a reproducible, observable pipeline with safe deployments.</div>
+              <div class="kv"><strong>Solution:</strong> XGBoost model + MLflow experiment tracking, DVC data versioning, Flask API served via Docker/Kubernetes, Prometheus metrics + Grafana dashboards, and GitHub Actions CI/CD.</div>
+              <div class="kv"><strong>Result:</strong> Rolling updates with CI/CD + monitoring endpoints, and artifact storage in S3-compatible object storage for promotion workflows.</div>
+              <div class="kv"><strong>Aha insight:</strong> Monitoring + automation aren’t “nice-to-haves” , without them you can’t confidently iterate in production.</div>
+              <div class="kv">
+                <strong>V2 improvement:</strong>
+                <ul class="clean">
+                  <li>Add automated data drift / concept drift checks and alerting.</li>
+                  <li>Introduce model registry “gates” (tests + perf thresholds) before promotion.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Project 4: Diabetes -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>Diabetes Risk Prediction System , recall-focused clinical ML + Streamlit app</h3>
+              <div class="meta">
+                <span><strong>Healthcare ML</strong> · threshold optimization · responsible UI</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge warn">Original build</span>
+              <span class="badge">2025</span>
+            </div>
+          </div>
+
+          <p>
+            A complete ML web app for diabetes risk assessment where the optimization target is clinical:
+            prioritize recall to reduce missed cases, and ship the result with guardrails and clear disclaimers.
+          </p>
+
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/Diabetes-Prediction-ML">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Repo
+            </a>
+            <a class="link" href="https://diabetes-prediction-ml-suaqje4jf3tbv32qsw6qgo.streamlit.app/">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Live demo
+            </a>
+          </div>
+
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv"><strong>Problem:</strong> In screening-like settings, false negatives can be more harmful than false positives.</div>
+              <div class="kv"><strong>Solution:</strong> Trained a baseline classifier and tuned decision thresholds to explicitly trade precision for recall in a patient-safety-oriented way.</div>
+              <div class="kv"><strong>Result:</strong> Recall improved from 51.9% → 70.4% (≈35% relative improvement), and false negatives reduced from 48% → 30%.</div>
+              <div class="kv"><strong>Aha insight:</strong> “Best AUC” doesn’t automatically mean “best clinical behavior” , thresholding is where you align the model with real-world costs.</div>
+              <div class="kv">
+                <strong>V2 improvement:</strong>
+                <ul class="clean">
+                  <li>Add calibration (reliability curves) so predicted risks align with observed frequencies.</li>
+                  <li>Integrate model cards + more explicit uncertainty / limitations messaging.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="section-title" style="margin-bottom:6px">
+          <h2 style="font-size:18px; margin:0">What I’m looking for</h2>
+          <div class="hint">If this matches what you need, let’s talk.</div>
+        </div>
+        <p style="margin:8px 0 0; color:var(--muted)">
+          I’m actively exploring <strong>ML Engineer</strong>, <strong>Applied Scientist</strong>, and <strong>Quant/ML Research</strong> roles where I can combine
+          strong mathematical reasoning with modern ML engineering (LLMs, MLOps, deployment, monitoring).
+        </p>
+        <div class="card-actions" style="margin-top:12px">
+          <a class="link primary" href="mailto:srikarashankara@outlook.com">Email</a>
+          <a class="link" href="https://www.linkedin.com/in/srikarashankara/">LinkedIn</a>
+          <a class="link" href="https://drive.google.com/uc?export=download&id=12Lza-t3aMDIN9N8P-E7W_9ENbDP8avxP">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE PROJECTS -->
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>More Projects</h2>
+        <div class="hint">A few extra builds that show breadth (NLP, recommendations, deployment).</div>
+      </div>
+
+      <div class="grid cols-3">
+        <article class="card small">
+          <div class="card-header">
+            <div>
+              <h3>Movie Recommender (Content-based TF-IDF) + Streamlit</h3>
+            </div>
+            <div class="badges">
+              <span class="badge">2025</span>
+            </div>
+          </div>
+          <p>
+            Built a content-based recommender by combining synopsis, genres, and cast/crew into a single “tags” feature,
+            then vectorizing with TF-IDF and using cosine similarity to recommend similar movies.
+          </p>
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/movie-recommender-website">Repo</a>
+            <a class="link" href="https://movie-recommender-website-o4qjv5drz9btrf7uj2fxqf.streamlit.app/">Live demo</a>
+          </div>
+        </article>
+
+        <article class="card small">
+          <div class="card-header">
+            <div>
+              <h3>Quantum Communications Research (PhD) → real-world modeling</h3>
+            </div>
+            <div class="badges">
+              <span class="badge">2020–2025</span>
+            </div>
+          </div>
+          <p>
+            Built mathematical models and simulations for large-scale entanglement distribution systems and satellite quantum communications.
+            Published 8 peer-reviewed papers (5 first-author) with 120+ citations.
+          </p>
+          <div class="card-actions">
+            <a class="link primary" href="https://scholar.google.com.au/citations?user=QmFHyvIAAAAJ">Google Scholar</a>
+            <a class="link" href="#about">Research summary</a>
+          </div>
+        </article>
+
+        <article class="card small">
+          <div class="card-header">
+            <div>
+              <h3>Hands-on ML Practice: deployment-first mindset</h3>
+            </div>
+            <div class="badges">
+              <span class="badge">Ongoing</span>
+            </div>
+          </div>
+          <p>
+            I like projects that force “real constraints”: reproducibility, packaging, monitoring, and UI demos
+            so non-technical users can actually try the thing.
+          </p>
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202">Browse GitHub</a>
+            <a class="link" href="#contact">Contact</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About</h2>
+        <div class="hint">A quick story that’s easy for recruiters (and engineers) to skim.</div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3 style="margin-top:0">Summary</h3>
+          <p>
+            I’m a recent PhD graduate in Applied Physics (Quantum Communications) with extensive experience in quantitative research,
+            statistical modeling, and algorithm development. I’ve translated complex mathematical models into executable code,
+            and I now apply that same rigor to end-to-end ML systems , from feature engineering and training to deployment and demos.
+          </p>
+          <p>
+            My recent focus: <strong>LLMs</strong> (fine-tuning with LoRA, transformer internals), <strong>MLOps</strong> (CI/CD, Kubernetes, monitoring),
+            and building clean user-facing demos with Streamlit.
+          </p>
+          <div class="meta">
+            <span><strong>Location:</strong> Sydney, NSW</span>
+            <span><strong>Email:</strong> <a href="mailto:srikarashankara@outlook.com">srikarashankara@outlook.com</a></span>
+            <span><strong>Work rights:</strong> Subclass 485 (valid till May 2029)</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Selected research highlights</h3>
+          <p>
+            My PhD work involved modeling photon statistics and noisy channels for satellite quantum communications,
+            feasibility studies for quantum networks, and resource analysis for distributed quantum computation.
+          </p>
+
+          <div class="kv" style="margin-top:12px">
+            <strong>Selected publications (sample):</strong>
+            <ul class="clean">
+              <li><em>Quantum Entanglement Distribution via Uplink Satellite Channels</em> , Physical Review Research (accepted 3 Sep 2025)</li>
+              <li><em>Resource Estimation for Delayed Choice Quantum Entanglement Based Sneakernet Networks…</em> , Physical Review Research 7, 023160 (2025)</li>
+              <li><em>Quantum direct communication protocols using discrete-time quantum walk</em> , Quantum Information Processing 19, 295 (2020)</li>
+            </ul>
+          </div>
+
+          <div class="card-actions">
+            <a class="link primary" href="https://scholar.google.com.au/citations?user=QmFHyvIAAAAJ">Full list on Google Scholar</a>
+            <a class="link" href="https://www.linkedin.com/in/srikarashankara/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="stack">
+    <div class="container">
+      <div class="section-title">
+        <h2>Tech Stack</h2>
+        <div class="hint">Tools I’m comfortable with , especially for shipping end-to-end ML work.</div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <h3 style="margin-top:0">ML / Data</h3>
+          <div class="stack" aria-label="ML stack">
+            <span class="chip">PyTorch</span>
+            <span class="chip">HuggingFace</span>
+            <span class="chip">PEFT (LoRA)</span>
+            <span class="chip">bitsandbytes (4-bit)</span>
+            <span class="chip">scikit-learn</span>
+            <span class="chip">XGBoost</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">NumPy</span>
+            <span class="chip">SciPy</span>
+            <span class="chip">Matplotlib</span>
+            <span class="chip">Plotly</span>
+            <span class="chip">tiktoken</span>
+            <span class="chip">NLP / TF-IDF</span>
+            <span class="chip">Probability / Bayesian reasoning</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">MLOps / Engineering</h3>
+          <div class="stack" aria-label="MLOps stack">
+            <span class="chip">Docker</span>
+            <span class="chip">Kubernetes</span>
+            <span class="chip">MLflow</span>
+            <span class="chip">DVC</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">Flask</span>
+            <span class="chip">Streamlit</span>
+            <span class="chip">AWS (S3)</span>
+            <span class="chip">Prometheus</span>
+            <span class="chip">Grafana</span>
+            <span class="chip">CI/CD</span>
+            <span class="chip">YAML configs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-title">
+        <h2>Resume</h2>
+        <div class="hint">Up-to-date PDF + quick links.</div>
+      </div>
+
+      <div class="card">
+        <p style="margin:0; color:var(--muted)">
+          Prefer the PDF? Here you go:
+        </p>
+
+        <div class="card-actions" style="margin-top:12px">
+          <a class="link primary" href="https://drive.google.com/file/d/12Lza-t3aMDIN9N8P-E7W_9ENbDP8avxP/view?usp=sharing">View CV (Google Drive)</a>
+          <a class="link" href="https://drive.google.com/uc?export=download&id=12Lza-t3aMDIN9N8P-E7W_9ENbDP8avxP">Download CV</a>
+          <a class="link" href="mailto:srikarashankara@outlook.com">Email</a>
+          <a class="link" href="https://www.linkedin.com/in/srikarashankara/">LinkedIn</a>
+          <a class="link" href="https://github.com/srikara202">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <div class="hint">If you’re hiring or collaborating, I’d love to chat.</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card contact-card">
+          <h3 style="margin-top:0">Let’s work together</h3>
+          <p>
+            The fastest way to reach me is email. If you prefer LinkedIn, that works too.
+            I’m happy to share additional project details, walkthroughs, or code pointers.
+          </p>
+
+          <div class="card-actions">
+            <a class="link primary" href="mailto:srikarashankara@outlook.com">srikarashankara@outlook.com</a>
+            <a class="link" href="https://www.linkedin.com/in/srikarashankara/">LinkedIn</a>
+            <a class="link" href="https://github.com/srikara202">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Quick info</h3>
+          <div class="kv">
+            <ul class="clean">
+              <li><strong>Location:</strong> Sydney, NSW</li>
+              <li><strong>Email:</strong> <a href="mailto:srikarashankara@outlook.com">srikarashankara@outlook.com</a></li>
+              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/srikarashankara/">srikarashankara</a></li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/srikara202">srikara202</a></li>
+              <li><strong>CV:</strong> <a href="https://drive.google.com/file/d/12Lza-t3aMDIN9N8P-E7W_9ENbDP8avxP/view?usp=sharing">Google Drive PDF</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-row">
+        <div>© <span id="year"></span> Srikara Shankara</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="social" href="#home">Back to top</a>
+          <a class="social" href="mailto:srikarashankara@outlook.com">Email</a>
+          <a class="social" href="https://github.com/srikara202">GitHub</a>
+          <a class="social" href="https://www.linkedin.com/in/srikarashankara/">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Scroll to top" title="Scroll to top">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 19V5"></path>
+      <path d="m5 12 7-7 7 7"></path>
+    </svg>
+  </button>
+</main>
+
+<script>
+  // Theme
+  (function(){
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    function setTheme(t){
+      root.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+    }
+
+    if(saved){
+      setTheme(saved);
+    }else{
+      setTheme(prefersLight ? 'light' : 'dark');
+    }
+
+    btn.addEventListener('click', () => {
+      const cur = root.getAttribute('data-theme') || 'dark';
+      setTheme(cur === 'dark' ? 'light' : 'dark');
+    });
+  })();
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll-to-top
+  (function(){
+    const toTop = document.getElementById('toTop');
+    function onScroll(){
+      if(window.scrollY > 700){
+        toTop.style.display = 'inline-flex';
+      } else {
+        toTop.style.display = 'none';
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+
+    toTop.addEventListener('click', () => {
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  })();
+</script>
+</body>
+</html>
