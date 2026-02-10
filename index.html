@@ -638,6 +638,86 @@
             </div>
           </details>
         </article>
+        
+        <!-- Project: RAG From Scratch -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>Bio-Scribe Assist: PDF-Grounded Nutrition Chatbot (RAG from scratch + Supabase vector search)</h3>
+              <div class="meta">
+                <span title="Core areas"><strong>RAG systems</strong> · embeddings · vector search · LLM apps</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge ok">RAG Chatbot</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+        
+          <p>
+            I built an end-to-end Retrieval-Augmented Generation (RAG) chatbot that answers questions grounded in a nutrition textbook PDF.
+            Instead of relying on LangChain/ChromaDB, I implemented the core RAG mechanics myself: PDF text extraction, chunking,
+            embedding generation, cosine-similarity retrieval, and prompt augmentation. The deployed version uses Supabase (pgvector)
+            for scalable retrieval and a lightweight web UI for interactive Q&A.
+          </p>
+        
+          <div class="card-actions">
+            <a class="link primary" href="https://bio-scribe-assist.lovable.app/">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path>
+              </svg>
+              Live demo
+            </a>
+            <a class="link" href="https://colab.research.google.com/">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"></path>
+                <path d="M20 2H6.5A2.5 2.5 0 0 0 4 4.5v15"></path>
+                <path d="M8 2v20"></path>
+              </svg>
+              Colab notebook
+            </a>
+          </div>
+        
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv">
+                <strong>Problem:</strong>
+                Long PDFs are hard to search and LLMs hallucinate when asked questions without direct grounding.
+                I wanted a system that answers reliably using the document as the single source of truth.
+              </div>
+        
+              <div class="kv">
+                <strong>Solution:</strong>
+                Implemented a full RAG pipeline: extract text page-by-page, split into small consistent chunks,
+                embed chunks + queries using a pretrained embedding model, retrieve top-k chunks by cosine similarity,
+                and inject retrieved context into a strict prompt that forces grounded answers (and abstains when context is missing).
+              </div>
+        
+              <div class="kv">
+                <strong>Result:</strong>
+                A working chatbot that can answer nutrition questions with evidence-based grounding from the PDF.
+                For production, I moved retrieval to Supabase (pgvector) using AI-assisted SQL + ingestion scripts that I reviewed and tested,
+                and deployed a web UI via Lovable.dev (GPT-3 for generation).
+              </div>
+        
+              <div class="kv">
+                <strong>Aha insight:</strong>
+                Chunking dominates retrieval quality. Semantic/topic chunking can look “smart” but often hurts recall in dense textbooks.
+                Consistent small chunks improved both retrieval stability and answer grounding.
+              </div>
+        
+              <div class="kv">
+                <strong>V2 improvement:</strong>
+                <ul class="clean">
+                  <li>Add hybrid retrieval (BM25 + vectors) + a reranker (cross-encoder) for higher precision.</li>
+                  <li>Add citations (page/chunk IDs) and an evaluation harness for faithfulness + groundedness.</li>
+                  <li>Introduce caching and streaming responses for faster UX.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
 
         <!-- Project 3: Cricket MLOps -->
         <article class="card">
