@@ -723,6 +723,89 @@
           </details>
         </article>
 
+        <!-- Project: Image Captioning -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>VisionCaption — Image Captioning (Frozen EfficientNet Encoder + Transformer Decoder)</h3>
+              <div class="meta">
+                <span title="Core areas"><strong>Multimodal AI</strong> · vision-language · Transformers · transfer learning</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge ok">Image Captioning</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+        
+          <p>
+            I built an end-to-end image captioning model that generates natural-language descriptions for images.
+            The system uses a pretrained EfficientNet-B0 CNN as a frozen visual encoder, then maps image features into
+            a Transformer decoder that produces captions autoregressively. The training pipeline uses Flickr8k captions,
+            a simple NLTK-based word tokenizer with special tokens, and Albumentations for consistent preprocessing and augmentation.
+          </p>
+        
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/Image-Captioning-Transformer">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path>
+              </svg>
+              Repo / demo
+            </a>
+            <a class="link" href="https://colab.research.google.com/drive/14ACz8svsl2cJr9xwEZ44F2cj5-yL8GbC?usp=sharing">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"></path>
+                <path d="M20 2H6.5A2.5 2.5 0 0 0 4 4.5v15"></path>
+                <path d="M8 2v20"></path>
+              </svg>
+              Colab notebook
+            </a>
+          </div>
+        
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv">
+                <strong>Problem:</strong>
+                Image captioning is a practical vision-language task that requires combining strong visual representations
+                with sequence modeling. I wanted to build a clean multimodal pipeline that learns to translate image features
+                into fluent captions without relying on large pretrained captioning models.
+              </div>
+        
+              <div class="kv">
+                <strong>Solution:</strong>
+                I used a pretrained EfficientNet-B0 classifier backbone as a frozen encoder (transfer learning),
+                projected the pooled image embedding into the Transformer model space via a trainable linear layer,
+                and implemented a Transformer decoder with causal attention + padding masks for autoregressive next-token prediction.
+                Captions were tokenized with a simple NLTK word tokenizer, padded/truncated to a fixed context length, and trained with teacher forcing.
+                Images were resized/normalized (ImageNet stats) using Albumentations, with light augmentations for robustness.
+              </div>
+        
+              <div class="kv">
+                <strong>Result:</strong>
+                The model learned to generate captions end-to-end on Flickr8k, reaching a final training cross-entropy loss of
+                <strong>~0.7</strong>. Inference supports greedy decoding as well as sampling with temperature and top-k.
+              </div>
+        
+              <div class="kv">
+                <strong>Aha insight:</strong>
+                Getting the “plumbing” right matters as much as the architecture: special tokens, padding masks, and a strict causal mask
+                were crucial for stable training and avoiding degenerate generation.
+              </div>
+        
+              <div class="kv">
+                <strong>V2 improvement:</strong>
+                <ul class="clean">
+                  <li>Add a validation split and report BLEU / METEOR / CIDEr (plus qualitative examples).</li>
+                  <li>Replace the single pooled embedding with spatial/patch features so the decoder can attend to richer visual detail.</li>
+                  <li>Implement beam search + repetition control for stronger decoding quality.</li>
+                  <li>Optionally unfreeze the last CNN blocks for fine-tuning with a smaller learning rate.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
         <!-- Project 3: Cricket MLOps -->
         <article class="card">
           <div class="card-header">
