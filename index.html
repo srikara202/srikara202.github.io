@@ -537,6 +537,57 @@
       </div>
 
       <div class="grid cols-2">
+        
+        <!-- Project 2: GPT from scratch -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h3>GPT-2 Foundational Model Built From Scratch (PyTorch) + distilgpt2 weight loading</h3>
+              <div class="meta">
+                <span title="Core areas"><strong>Transformers from scratch</strong> · tokenization · decoding</span>
+              </div>
+            </div>
+            <div class="badges">
+              <span class="badge ok">Paper reimplementation</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+
+          <p>
+            I implemented GPT-2 end-to-end in PyTorch (token + positional embeddings, causal self-attention, transformer blocks, LM head),
+            built a toy training pipeline, and then loaded HuggingFace distilgpt2 weights into my own architecture.
+            I sanity-checked correctness via near-identical logits and matching argmax tokens.
+          </p>
+
+          <div class="card-actions">
+            <a class="link primary" href="https://github.com/srikara202/GPT-built-from-scratch">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Repo
+            </a>
+            <a class="link" href="https://gpt-built-from-scratch-gg43jqmryyynvfbn9fz7ve.streamlit.app/">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
+              Live demo
+            </a>
+          </div>
+
+          <details>
+            <summary>Story (Problem → Solution → Result)</summary>
+            <div class="details-body">
+              <div class="kv"><strong>Problem:</strong>I wanted a first-principles understanding of transformer internals (tokenization, attention mechanism, masking, input format, tensor shapes, etc.).</div>
+              <div class="kv"><strong>Solution:</strong>Implemented the full GPT-2 stack in PyTorch by coding up the masked multi-headed attention from scratch, building a transformer, building the trainable embeddings, and coding autoregressive generation (temperature + top-k).</div>
+              <div class="kv"><strong>Result:</strong>Loaded distilgpt2 (82M) weights and validated outputs: max abs diff ≈ 3.8×10⁻⁵ with matching argmax tokens, showing that my model was identical to GPT-2.</div>
+              <div class="kv"><strong>Aha insight:</strong>Understood the nuts and bolts of the architecture and the inner working of GPTs.</div>
+              <div class="kv">
+                <strong> Next Steps:</strong>
+                <ul class="clean">
+                  <li> Move on to coding deepseek, which is a multi-expert model unlike the monolithic GPT. </li>
+                  <li> Explore Diffusion Models as they are catching up as well. </li> 
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
         <!-- Project 1: Llama SQL -->
         <article class="card">
           <div class="card-header">
@@ -576,63 +627,13 @@
               <div class="kv"><strong>Solution:</strong> Fine-tuned Llama-2-7B with instruction-style prompting using LoRA adapters + 4-bit loading (NF4) to fit training in Colab.</div>
               <div class="kv"><strong>Result:</strong> A working demo that generates SQL with controllable decoding (temperature, top-p, top-k). Trained on a 5,000-example subset for a quick iteration loop.</div>
               <div class="kv">
-                <strong>Aha insight:</strong> Exact string match is misleading for SQL (many answers can be correct). Execution-based evaluation is the right way to measure correctness.
+                <strong>Aha insight:</strong>Raw foundational LLMs can be fine-tuned on a much smaller specific dataset for specialized tasks. This opens up options to customize small LLMs at a lower cost rather than using large foundational LLMs for the same
               </div>
               <div class="kv">
-                <strong>V2 improvement:</strong>
+                <strong>Next Steps:</strong>
                 <ul class="clean">
-                  <li>Add execution-based evaluation (run SQL on a test DB) + dialect controls (SQLite/Postgres/MySQL).</li>
-                  <li>Handle long schemas with schema pruning / retrieval (and better context-window management).</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-        </article>
-
-        <!-- Project 2: GPT from scratch -->
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <h3>GPT-2 Foundational Model Built From Scratch (PyTorch) + distilgpt2 weight loading</h3>
-              <div class="meta">
-                <span title="Core areas"><strong>Transformers from scratch</strong> · tokenization · decoding</span>
-              </div>
-            </div>
-            <div class="badges">
-              <span class="badge ok">Paper reimplementation</span>
-              <span class="badge">2026</span>
-            </div>
-          </div>
-
-          <p>
-            I implemented GPT-2 end-to-end in PyTorch (token + positional embeddings, causal self-attention, transformer blocks, LM head),
-            built a toy training pipeline, and then loaded HuggingFace distilgpt2 weights into my own architecture.
-            I sanity-checked correctness via near-identical logits and matching argmax tokens.
-          </p>
-
-          <div class="card-actions">
-            <a class="link primary" href="https://github.com/srikara202/GPT-built-from-scratch">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
-              Repo
-            </a>
-            <a class="link" href="https://gpt-built-from-scratch-gg43jqmryyynvfbn9fz7ve.streamlit.app/">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path></svg>
-              Live demo
-            </a>
-          </div>
-
-          <details>
-            <summary>Story (Problem → Solution → Result)</summary>
-            <div class="details-body">
-              <div class="kv"><strong>Problem:</strong> I wanted a first-principles understanding of transformer internals (attention math, masking, shapes, and weight mapping).</div>
-              <div class="kv"><strong>Solution:</strong> Implemented the full GPT-2 stack in PyTorch and wrote utilities for tokenization, windowed training pairs, and autoregressive generation (temperature + top-k).</div>
-              <div class="kv"><strong>Result:</strong> Loaded distilgpt2 (82M) weights and validated outputs: max abs diff ≈ 3.8×10⁻⁵ with matching argmax tokens.</div>
-              <div class="kv"><strong>Aha insight:</strong> “Correctness” isn’t just that it runs, tiny implementation details (masking, layernorm placement, shape conventions) show up immediately in logits.</div>
-              <div class="kv">
-                <strong>V2 improvement:</strong>
-                <ul class="clean">
-                  <li>Add better sampling defaults + repetition penalties (toy-trained models can be incoherent).</li>
-                  <li>Expand training + evaluation (perplexity) on a standard dataset with stronger checkpoints.</li>
+                  <li>Explore finetuning for other tasks such as subject specializations, text classification, sentiment analysis, etc.</li>
+                  <li>Explore other methods such as RAG workflows for building specialized AI.</li>
                 </ul>
               </div>
             </div>
@@ -707,16 +708,15 @@
         
               <div class="kv">
                 <strong>Aha insight:</strong>
-                Chunking dominates retrieval quality. Semantic/topic chunking can look “smart” but often hurts recall in dense textbooks.
+                Chunking dominates retrieval quality. Semantic/topic chunking can look “smart” but often hurts recall in dense textbooks due to inconsistent chunk sizes.
                 Consistent small chunks improved both retrieval stability and answer grounding.
               </div>
         
               <div class="kv">
-                <strong>V2 improvement:</strong>
+                <strong>Next Steps:</strong>
                 <ul class="clean">
-                  <li>Add hybrid retrieval (BM25 + vectors) + a reranker (cross-encoder) for higher precision.</li>
-                  <li>Add citations (page/chunk IDs) and an evaluation harness for faithfulness + groundedness.</li>
-                  <li>Introduce caching and streaming responses for faster UX.</li>
+                  <li>Explore concepts such as reranking for more accurate retreival.</li>
+                  <li>Explore RAG workflows for multimodal data.</li>
                 </ul>
               </div>
             </div>
@@ -727,7 +727,7 @@
         <article class="card">
           <div class="card-header">
             <div>
-              <h3>VisionCaption: Image Captioning (Frozen EfficientNet Encoder + Transformer Decoder)</h3>
+              <h3>Multimodal Transformer: Image Captioning (Frozen EfficientNet Encoder + Transformer Decoder)</h3>
               <div class="meta">
                 <span title="Core areas"><strong>Multimodal AI</strong> · vision-language · Transformers · transfer learning</span>
               </div>
@@ -750,7 +750,7 @@
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v7H3V3h7"></path>
               </svg>
-              Repo / demo
+              Repo
             </a>
             <a class="link" href="https://colab.research.google.com/drive/14ACz8svsl2cJr9xwEZ44F2cj5-yL8GbC?usp=sharing">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -767,9 +767,8 @@
             <div class="details-body">
               <div class="kv">
                 <strong>Problem:</strong>
-                Image captioning is a practical vision-language task that requires combining strong visual representations
-                with sequence modeling. I wanted to build a clean multimodal pipeline that learns to translate image features
-                into fluent captions without relying on large pretrained captioning models.
+                Handling multimodal data is one of the most vital AI industry skill. I wanted to build a clean multimodal transformer model that learns to translate image features
+                into fluent English language captions.
               </div>
         
               <div class="kv">
@@ -794,12 +793,10 @@
               </div>
         
               <div class="kv">
-                <strong>V2 improvement:</strong>
+                <strong>Next Steps:</strong>
                 <ul class="clean">
-                  <li>Add a validation split and report BLEU / METEOR / CIDEr (plus qualitative examples).</li>
-                  <li>Replace the single pooled embedding with spatial/patch features so the decoder can attend to richer visual detail.</li>
-                  <li>Implement beam search + repetition control for stronger decoding quality.</li>
-                  <li>Optionally unfreeze the last CNN blocks for fine-tuning with a smaller learning rate.</li>
+                  <li>To improve accuracy, finetune an pretrained GPT rather than training a decoder from scratch.</li>
+                  <li>Use a bigger dataset for a wider variety of images and also larger vocabulary.</li>
                 </ul>
               </div>
             </div>
